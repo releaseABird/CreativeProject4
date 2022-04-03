@@ -15,7 +15,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/">
+          <router-link to="/sketchbook">
             <a href="#">SKETCHBOOK</a>
           </router-link>
         </li>
@@ -25,7 +25,7 @@
           </router-link>
         </li>
         <li>
-          <router-link to="/">
+          <router-link to="/contribute">
             <a href="#">CONTRIBUTE</a>
           </router-link>
         </li>
