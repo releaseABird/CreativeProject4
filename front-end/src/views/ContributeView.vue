@@ -17,11 +17,12 @@
        <br>
        </div>
        <input type="file" name="photo" @change="fileChanged">
-       <button class="button button3" @click="upload">Upload</button>
+       <button class="button3" @click="upload()">Upload</button>
      </div>
      <div class="upload" v-if="addItem">
        <h2>{{addItem.title}}</h2>
        <img :src="addItem.path" />
+       <p>{{addItem.artist}}</p>
        <p>{{addItem.desc}}</p>
      </div>
    </div>
@@ -41,6 +42,7 @@
      </div>
      <div class="upload" v-if="findItem">
        <input v-model="findItem.title">
+       <input v-model="findItem.artist">
        <input v-model="findItem.desc">
        <p></p>
        <img :src="findItem.path" />
@@ -156,6 +158,7 @@ export default {
       items: [],
       findTitle: "",
       findItem: null,
+      artist: "",
       desc: "",
     }
   },
@@ -173,6 +176,7 @@ export default {
       try {
         await axios.put("/api/items/" + item._id, {
           title: this.findItem.title,
+          artist: this.findItem.artist,
           desc: this.findItem.desc,
         });
         this.findItem = null;
@@ -201,11 +205,13 @@ export default {
     },
     async upload() {
       try {
+        console.log("uploading");
         const formData = new FormData();
         formData.append('photo', this.file, this.file.name)
         let r1 = await axios.post('/api/photos', formData);
         let r2 = await axios.post('/api/items', {
           title: this.title,
+          artist: this.artist,
           desc: this.desc,
           path: r1.data.path
         });

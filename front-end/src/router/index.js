@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-
+import ContributionPage from '../views/ContributeView.vue'
+import SketchBook from '../views/SketchbookView.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,12 +22,12 @@ const routes = [
   {
     path: '/contribute',
     name: 'contribute',
-    component: () => import(/* webpackChunkName: "about" */ '../views/ContributeView.vue')
+    component: ContributionPage
   },
   {
-    path: '/',
+    path: '/sketchbook',
     name: 'sketchbook',
-    component: () => import(/* webpackChunkName: "about" */ '../views/SketchbookView.vue')
+    component: SketchBook
   },
 ]
 
